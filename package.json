@@ -1,0 +1,22 @@
+{
+  "name": "js-weather-app",
+  "version": "1.0.0",
+  "description": "A weather app to display weather condition of the city being searched",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sudhintc/js-weather-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sudhintc/js-weather-app/issues"
+  },
+  "homepage": "https://github.com/Sudhintc/js-weather-app#readme",
+  "devDependencies": {
+    "jest": "^29.5.0"
+  }
+}

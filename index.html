@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <form action="#" id="search-form">
+        <div class="search">
+          <input id="city" type="text" placeholder="enter city" />
+          <button id="btn"><img src="/images/search.png" alt="" /></button>
+        </div>
+      </form>
+      <div class="error"></div>
+      <div class="weather">
+        <img id="weather-img" src="/images/rain.png" class="icon" />
+        <h2 class="temp">10°C</h2>
+        <h1 class="city">New York</h1>
+        <div class="details">
+          <div class="col">
+            <img src="/images/humidity.png" alt="" />
+            <div>
+              <p>
+                <span class="humidity"> 26 %</span><br />
+                Humidity
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <img src="/images/wind.png" alt="" />
+            <div>
+              <p>
+                <span class="wind">6 km/h</span><br />
+                Wind Speed
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/index.js"></script>
+  </body>
+</html>
