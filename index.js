@@ -1,3 +1,19 @@
+
+const showWeather = async () => {
+  try {
+    const data = await getWeather();
+    console.log(data);
+    displayWeatherData(data);
+  } catch (e) {
+    console.log(e);
+    displayError();
+  }
+};
+function displayError() {
+  document.querySelector(".error").innerHTML = "weather data not availiable";
+  document.querySelector(".error").style.display = "block";
+  document.querySelector(".weather").style.display = "none";
+}
 const getWeather = async () => {
   const apiKey = "224683afb327839fa35d0e7df7029bfd";
   const city = document.getElementById("city").value;
@@ -7,17 +23,13 @@ const getWeather = async () => {
   try {
     const weather = await fetch(apiUrl);
     if (weather.status !== 200) {
-      throw new Error("weather data not found");
+      throw new Error();
     } else {
       const data = await weather.json();
-      console.log(data);
-      displayWeatherData(data);
+      return data;
     }
   } catch (error) {
-    document.querySelector(".error").innerHTML = "weather data not availiable";
-    document.querySelector(".error").style.display = "block";
-    document.querySelector(".weather").style.display = "none";
-    console.log(error);
+    throw new Error("weather data not availiable");
   }
 };
 
@@ -28,6 +40,7 @@ const getWeatherImg = (weatherMain) => {
     Rain: "images/rain.png",
     Drizzle: "images/drizzle.png",
     Mist: "images/mist.png",
+    default: "images/clear.png",
   };
   return weatherImages[weatherMain];
 };
@@ -35,10 +48,10 @@ const getWeatherImg = (weatherMain) => {
 function displayWeatherData(data) {
   const weatherImg = document.querySelector("#weather-img");
   if (
-    data.main.temp &&
+    typeof data.main.temp === "number" &&
     data.name &&
-    data.main.humidity &&
-    data.wind.speed &&
+    typeof data.main.humidity === "number" &&
+    typeof data.wind.speed === "number" &&
     data.weather
   ) {
     document.querySelector(".temp").innerHTML =
@@ -49,7 +62,7 @@ function displayWeatherData(data) {
       Math.floor(data.wind.speed) + " Km/h";
 
     const weatherMain = data.weather[0].main;
-    weatherImg.src = getWeatherImg(weatherMain);
+    weatherImg.src = getWeatherImg(weatherMain) || getWeatherImg("default");
     document.querySelector(".error").style.display = "none";
     document.querySelector(".weather").style.display = "block";
 
@@ -61,9 +74,14 @@ function displayWeatherData(data) {
   }
 }
 // const btn = document.getElementById("btn");
-// btn.addEventListener("click", getWeather);
+// btn.addEventListener("click", showWeather);
+document.addEventListener("DOMContentLoaded", function () {
+  const btn = document.getElementById("btn");
+  btn.addEventListener("click", showWeather);
+});
 
-module.exports = {
+export{
   getWeather,
   displayWeatherData,
+  showWeather,
 };
